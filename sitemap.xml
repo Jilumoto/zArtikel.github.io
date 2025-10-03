@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <!-- Homepage -->
+   <url>
+      <loc>https://zartikel.github.io/</loc>
+      <lastmod>2025-10-03</lastmod>
+      <changefreq>daily</changefreq>
+      <priority>1.0</priority>
+   </url>
+
+   <!-- Artikel 1 -->
+   <url>
+      <loc>https://zartikel.github.io/artikel1.html</loc>
+      <lastmod>2025-10-03</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+
+   <!-- Artikel 2 -->
+   <url>
+      <loc>https://zartikel.github.io/artikel2.html</loc>
+      <lastmod>2025-10-03</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+
+   <url>
+      <loc>https://zartikel.github.io/artikel3.html</loc>
+      <lastmod>2025-10-03</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+
+   <url>
+      <loc>https://zartikel.github.io/artikel4.html</loc>
+      <lastmod>2025-10-03</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+
+   <url>
+      <loc>https://zartikel.github.io/artikel5.html</loc>
+      <lastmod>2025-10-03</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+
+   <url>
+      <loc>https://zartikel.github.io/artikel6.html</loc>
+      <lastmod>2025-10-03</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.8</priority>
+   </url>
+
+
+
+
+
+   <!-- Tambahkan lagi sesuai kebutuhan -->
+</urlset>
