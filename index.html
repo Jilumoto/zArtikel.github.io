@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>zArtikel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="zartikel.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="zartikel.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="zartikel.png">
+
+  <style>
+    :root{
+      --blue-1: #0066cc;
+      --blue-2: #0099ff;
+      --bg: #f7fbff;
+      --card: #ffffff;
+      --muted: #6b7280;
+      --glass: rgba(255,255,255,0.6);
+    }
+
+    /* Reset & base */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background:var(--bg);
+      color:#0b2540;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.55;
+      overflow-x:hidden;
+    }
+
+    /* TOP SCROLL PROGRESS */
+    .progress {
+      position:fixed;
+      top:0;
+      left:0;
+      height:4px;
+      width:0%;
+      background: linear-gradient(90deg,var(--blue-2),var(--blue-1));
+      z-index:2200;
+      transition: width 120ms linear;
+    }
+
+    /* NAV */
+    nav {
+      position:relative;
+      top:0;
+      z-index:2000;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:12px 22px;
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(8px) saturate(120%);
+      border-bottom: 1px solid rgba(10, 25, 41, 0.04);
+      transition: background 300ms ease, transform 300ms ease, box-shadow 300ms ease;
+    }
+
+    nav.scrolled {
+      background: linear-gradient(90deg,var(--blue-1),var(--blue-2));
+      color: white;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .brand {
+      display:flex;
+      gap:12px;
+      align-items:center;
+      cursor:default;
+    }
+
+    .logo {
+  display: flex;
+  align-items: center; /* Biar rata tengah secara vertikal */
+  gap: 8px; /* Jarak antara logo dan teks */
+  background: transparent; /* Bisa kamu ganti sesuai tema */
+  padding: 6px;
+  border-radius: 8px; /* Sudut kotak melengkung */
+   /* Efek modern */
+}
+
+.logo img {
+  height: 100px;
+  
+  width: auto;
+}
+
+.logo-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333; /* Warna teks */
+}
+
+
+    .brand h1 {
+      font-size:16px;
+      margin:0;
+      font-weight:700;
+    }
+    .brand p { margin:0; font-size:12px; color:var(--muted) }
+
+    /* Links */
+    .nav-links { display:flex; align-items:center; gap:10px; }
+    .nav-links ul { list-style:none; display:flex; gap:6px; margin:0; padding:0; align-items:center; }
+    .nav-links a {
+      display:inline-block;
+      padding:8px 10px;
+      text-decoration:none;
+      color:inherit;
+      font-weight:600;
+      font-size:14px;
+      border-radius:8px;
+      position:relative;
+    }
+    .nav-links a:focus { outline:2px dashed rgba(0,102,204,0.25); outline-offset:3px; }
+    /* animated underline */
+    .nav-links a::after{
+      content:'';
+      position:absolute;
+      left:8%;
+      bottom:-6px;
+      width:84%;
+      height:3px;
+      border-radius:3px;
+      background: linear-gradient(90deg,var(--blue-2),var(--blue-1));
+      transform: scaleX(0);
+      transform-origin:left;
+      transition: transform .36s cubic-bezier(.2,.9,.2,1);
+      opacity:0.95;
+    }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+
+    /* Hamburger (mobile) */
+    .hamburger {
+      display:none;
+      border:0;
+      background:transparent;
+      cursor:pointer;
+      padding:8px;
+      border-radius:8px;
+    }
+    .hamburger .bar {
+      width:22px;
+      height:2px;
+      background:currentColor;
+      display:block;
+      margin:4px 0;
+      transition: transform .28s ease, opacity .28s ease;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 80vh;
+      height: 75vh;
+      margin-top: 0;
+      overflow: hidden;
+    }
+
+    .hero-img {
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+      rgba(0,0,0,0.4), 
+      rgba(0,0,0,0.4)
+    ), url("gambar1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; /* Memastikan gambar menutupi area hero:contentReference[oaicite:6]{index=6} */
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5); /* bisa atur opacity sesuai keinginan */
+  z-index: 1;
+}
+
+.hero-text {
+  position:absolute;
+  bottom: 30px;
+  left: 30px;
+  color: red;
+  padding: 15px;
+  border-radius: 8px;
+  max-width: 90%;
+  z-index: 2;
+}
+
+.hero-text p {
+  color: white !important;  /* contoh, pakai !important biar pasti muncul */
+}
+
+.hero-text h2 {
+  color: white !important;
+}
+
+.eyebrow {
+  color: white !important;
+}
+
+.hero-text h2 { font-size: 2.5em; margin: 0.3em 0; }
+.hero-text p  { margin-bottom: 1em; line-height: 1.5; }
+.hero-text .eyebrow { 
+  text-transform: uppercase; font-weight: bold; 
+  letter-spacing: 1px; margin-bottom: 0.5em; 
+}
+@media (max-width: 768px) {
+  .hero { height: 60vh; }
+  .hero-text { width: 90%; left: 50%; transform: translateX(-50%); }
+  .hero-text h2 { font-size: 1.8em; }
+  .hero-text p  { font-size: 1em; }
+}
+
+    .hero-inner {
+      width:100%;
+      max-width:1100px;
+      display:flex;
+      gap:32px;
+      align-items:center;
+      justify-content:space-between;
+      padding:28px;
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.75));
+      box-shadow: 0 18px 40px rgba(6, 40, 80, 0.06);
+      transform-style:preserve-3d;
+    }
+    .hero-content { max-width:640px; }
+    .eyebrow { font-size:13px; font-weight:600; color:var(--blue-1); margin-bottom:12px; }
+    .hero h2 { font-size:32px; margin:0 0 12px; color:var(--blue-1); line-height:1.08; }
+    .hero p { margin:0 0 18px; color:var(--muted); font-size:15px; }
+
+    .cta {
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 16px;
+      border-radius:12px;
+      background: linear-gradient(90deg,var(--blue-1),var(--blue-2));
+      color:white;
+      text-decoration:none;
+      font-weight:700;
+      box-shadow: 0 10px 24px rgba(0,102,204,0.14);
+      transition: transform .18s ease;
+    }
+    .cta:active{ transform:translateY(1px) }
+
+    /* small decorative floating circle */
+    .hero-visual {
+      width:260px;
+      height:160px;
+      border-radius:14px;
+      background: linear-gradient(135deg, rgba(0,102,204,0.08), rgba(0,153,255,0.06));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--blue-1);
+      font-weight:700;
+      transform:translateZ(20px);
+    }
+
+    .slider {
+  position: relative;
+  width: 100%;       
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+  height: 100vh;
+}
+
+.slides img {
+  width: 100%;
+  max-width: 100%;    
+  flex-shrink: 0;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+@media (max-width: 600px) {
+  .prev, .next {
+    font-size: 18px;
+    padding: 8px;
+  }
+}
+
+
+
+    /* MAIN content container */
+    main {
+      max-width:1100px;
+      margin:36px auto;
+      padding:0 20px 80px;
+    }
+
+    /* cards + reveal animation */
+    .grid {
+      display:grid;
+      gap:20px;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+
+    @media (max-width:880px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background:var(--card);
+      border-radius:14px;
+      padding:22px;
+      box-shadow: 0 10px 28px rgba(6, 40, 80, 0.06);
+      transform-origin:center;
+      overflow:hidden;
+    }
+
+    .card:not(.visible-initial) {
+    display: none;
+}
+
+    .card-img {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    /* reveal baseline (hidden) */
+    .reveal {
+      opacity:0;
+      transform: translateY(28px) scale(.985);
+      filter: blur(4px);
+      transition: transform 640ms cubic-bezier(.2,.9,.2,1), opacity 640ms ease, filter 640ms ease;
+      will-change: transform, opacity;
+    }
+    /* visible state */
+    .reveal.visible {
+      opacity:1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+
+    /* article heading & meta */
+    .meta { display:flex; gap:10px; align-items:center; color:var(--muted); font-size:13px; margin-bottom:10px; }
+    .tag {
+      background: linear-gradient(90deg,var(--blue-1),var(--blue-2));
+      color:white;
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:12px;
+    }
+    .card h3 { margin:6px 0 12px; color:var(--blue-1) }
+    .card p { margin:0 0 12px; color:#17324d }
+
+    /* about & contact simple styles */
+    section.about, section.contact {
+      background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.8));
+      border-radius:14px;
+      padding:22px;
+      box-shadow: 0 10px 24px rgba(6, 40, 80, 0.04);
+    }
+
+    footer {
+      max-width:1100px;
+      margin:30px auto 60px;
+      padding:18px 20px;
+      color: #fff;
+      background: linear-gradient(90deg,var(--blue-1),var(--blue-2));
+      border-radius:12px;
+      text-align:center;
+      font-weight:600;
+    }
+
+    /* mobile nav open */
+    @media (max-width:860px){
+      .nav-links { display:none; position:fixed; inset:70px 18px auto 18px; background:var(--card); padding:12px; border-radius:12px; box-shadow: 0 18px 40px rgba(6,40,80,0.12); }
+      .nav-links.open { display:block; }
+      .hamburger { display:inline-block; }
+    }
+
+    /* small utilities */
+    .muted { color:var(--muted); font-size:14px; }
+    .spacer { height:16px }
+
+    /* subtle entrance for entire main when first load */
+    .main-entrance { opacity:0; transform: translateY(12px); transition: all 700ms cubic-bezier(.2,.9,.2,1); }
+    .main-entrance.in { opacity:1; transform: translateY(0); }
+
+    /* Search Box Wrapper */
+.search-box {
+  max-width: 500px;
+  margin: 20px auto;
+  position: relative;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 14px 22px;
+  border-radius: 999px;
+  border: 1px solid var(--blue-2);
+  font-size: 15px;
+  outline: none;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  background: var(--glass);
+  box-shadow: 0 4px 18px rgba(0, 102, 204, 0.1); 
+  backdrop-filter: blur(4px); 
+  height: 50px; 
+  padding-right: 60px;
+}
+
+#searchButton {
+  position: absolute;
+  right: 8px; /* Jarak dari sisi kanan */
+  height: 44px;
+  width: 44px;
+  border: none;
+  border-radius: 50%; /* Membuat tombol bulat */
+  background: var(--blue-1);
+  color: white; /* Warna ikon di dalam tombol */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 10px rgba(0, 102, 204, 0.25);
+  top: 50%; 
+  transform: translateY(-50%);
+}
+
+#searchForm {
+  position: relative;
+  display: flex; /* Untuk menyejajarkan input dan tombol */
+  align-items: center;
+}
+
+#searchButton:active {
+  transform: scale(0.98);
+  box-shadow: none;
+}
+
+#searchButton:hover {
+  background: var(--blue-2);
+  
+}
+
+#searchButton svg {
+  color: white;
+  stroke-width: 2.8; /* Sesuaikan ketebalan garis ikon */
+}
+
+#searchForm.shake {
+  animation: shake 0.4s;
+}
+
+#searchInput:focus {
+  border-color: var(--blue-1);
+  background-color: var(--card); 
+  box-shadow: 0 0 15px rgba(0, 153, 255, 0.4); 
+}
+
+.shake {
+  animation: shake 0.4s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.85); 
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1500;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.loading-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.spinner {
+  width: 30px;
+  height: 30px;
+  border: 4px solid var(--blue-2);
+  border-top: 4px solid var(--blue-1);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.search-results-info {
+  margin-top: -12px; 
+  margin-bottom: 25px;
+  padding: 10px 20px;
+  background: linear-gradient(90deg, var(--blue-2), var(--blue-1));
+  color: white;
+  border-radius: 12px;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.5s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+.search-results-info.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.search-results-info strong {
+  font-weight: 700;
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="progress" aria-hidden="true"></div>
+
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="brand" aria-hidden="false">
+      
+      <div class="logo">
+        <img src="zartikel.png" alt="logo">
+      </div>
+      <div class="logo-text">
+        
+        <p style="margin-top:2px;color:var(--muted);font-weight:600;font-size:12px"></p>
+      </div>
+    </div>
+
+    <button class="hamburger" aria-expanded="false" aria-label="Buka menu" id="navToggle">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="navLinks">
+      <ul>
+        <li><a href="#home" data-target="home" class="active">Home</a></li>
+        <li><a href="#about" data-target="about">About</a></li>
+        <li><a href="#articles" data-target="articles">Articles</a></li>
+        <li><a href="#contact" data-target="contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  
+    <header class="hero" id="home">
+  <div class="slider">
+    <div class="slides">
+      <img src="nasitumpeng.png" alt="Slide 1">
+      <img src="https://asset-2.tribunnews.com/tribunnews/foto/bank/images/resep-bolu-pisang-kukus.jpg" alt="Slide 2">
+      <img src="pizza.jpg" alt="Slide 3">
+      <img src="hias.jpg" alt="Slide 4">
+      <img src="https://image.idntimes.com/post/20210228/fromandroid-41a7bfad27fd6b94159fe7e9ae173f11.jpg" alt="Slide 5">
+      <img src="hias.jpg" alt="Slide 6">
+      <img src="https://asset.kompas.com/crops/iT4vQi_Fcn6H-CbWgNbvWRlyzqc=/0x0:1000x667/1200x800/data/photo/2023/07/27/64c1d1f878622.jpeg  " alt="Slide 7">
+    </div>
+    <!-- overlay hitam transparan -->
+    <div class="overlay"></div>
+
+    <!-- Tombol navigasi -->
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+  </div>
+
+  <!-- Teks di atas slider -->
+  <div class="hero-text">
+    <div class="eyebrow">Artikel & Wawasan</div>
+    <h2>Website yang menyediakan banyak artikel bermanfaat</h2>
+    <p>Lihat lebih banyak artikel untuk menambah limu kalian.</p>
+    <a href="#articles" class="cta">Lihat Artikel →</a>
+  </div>
+</header>
+
+  <main id="mainContent" class="main-entrance" role="main">
+    <section id="articles" aria-labelledby="articles-title" style="margin-top:6px">
+  <h2 id="articles-title" style="margin:0 0 16px;color:var(--blue-1)">Artikel Terbaru</h2>
+
+  <div class="search-box">
+    <form id="articleSearchForm" role="search" aria-label="Formulir Pencarian Artikel">
+      <input type="search" id="searchInput" placeholder="Cari artikel..." name="q" aria-label="Masukkan kata kunci pencarian">
+      <button type="submit" id="searchButton" aria-label="Tombol Cari">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+    </form>
+  </div>
+
+  <p id="searchResultsInfo" class="search-results-info" aria-live="polite">
+    Menampilkan hasil untuk: <strong></strong>
+  </p>
+  <div style="position: relative;"> 
+    <div id="loadingOverlay" class="loading-overlay">
+      <div class="spinner"></div>
+    </div>
+  <div class="grid" id="articleGrid">     
+      
+        <!-- Article 1 -->
+<article class="card reveal" data-index="0" aria-labelledby="a1title">
+  <img src="nasitumpeng.png" alt="ilustrasi nasi tumpeng" class="card-img">
+  <div class="meta"><span class="tag">Makanan</span><span class="muted">12 Sep 2025 • 5 min read</span></div>
+  <h3 id="a1title">Panduan Lengkap Membuat Nasi Tumpeng yang Mudah & Bernilai</h3>
+  <p>Nasi tumpeng adalah hidangan tradisional Indonesia, simbol syukur, persatuan, dan budaya kekayaan kuliner Nusantara.
+     Meski tampak rumit, membuatnya bisa mudah jika mengikuti panduan yang sistematis</p>
+  <p class="muted">Pelajari bagaimana cara membuat nasi tumpeng yang mudah dan praktis.</p>
+  <a href="artikel1.html" class="cta" style="padding:8px 14px;font-size:14px;border-radius:8px">Baca Selengkapnya →</a>
+</article>
+
+        <!-- Article 2 -->
+        <article class="card reveal" data-index="0" aria-labelledby="a1title">
+         <img src="pizza.jpg" alt="ilustrasi nasi tumpeng" class="card-img">
+         <div class="meta"><span class="tag">Makanan</span><span class="muted">28 Sep 2025 • 8 min read</span></div>
+         <h3 id="a1title">Resep Praktis Pizza Rumahan Lezat & Mudah Dibuat</h3>
+         <p>Pizza merupakan salah satu hidangan internasional yang telah lama dikenal dan digemari oleh masyarakat dari berbagai kalangan. Asal-usulnya berasal
+         dari Italia, namun popularitasnya kini meluas ke seluruh penjuru dunia, termasuk Indonesia.</p>
+         <p class="muted">Nikmati pizza rumahan yang lezat dan mudah dibuat. Panduan lengkap adonan, topping, hingga memanggang. Cocok untuk semua kalangan. Coba resepnya sekarang!</p>
+         <a href="artikel2.html" class="cta" style="padding:8px 14px;font-size:14px;border-radius:8px">Baca Selengkapnya →</a>
+        </article>
+
+        <!-- Article 3 -->
+        <article class="card reveal" data-index="0" aria-labelledby="a1title">
+         <img src="hias.jpg" alt="ilustrasi nasi tumpeng" class="card-img">
+         <div class="meta"><span class="tag">Lomba</span><span class="muted">29 Sep 2025 • 9 min read</span></div>
+         <h3 id="a1title">Lomba Hias Kaleng Kerupuk 17 Agustus: Kreatif & Meriah</h3>
+         <p>Setiap tanggal 17 Agustus, seluruh rakyat Indonesia merayakan Hari Ulang Tahun (HUT) Kemerdekaan Republik Indonesia dengan penuh semangat dan sukacita. Berbagai lomba dan kegiatan
+           tradisional hingga modern digelar untuk menyemarakkan momen bersejarah ini.</p>
+         <p class="muted">Lomba menghias kaleng kerupuk jadi kegiatan unik dan kreatif untuk 17 Agustus. Yuk, ramaikan
+           semangat kemerdekaan dengan cara seru dan edukatif!</p>
+         <a href="artikel3.html" class="cta" style="padding:8px 14px;font-size:14px;border-radius:8px">Baca Selengkapnya →</a>
+        </article>
+
+        <!-- Article 4 -->
+         <article class="card reveal" data-index="0" aria-labelledby="a1title">
+         <img src="https://image.idntimes.com/post/20210228/fromandroid-41a7bfad27fd6b94159fe7e9ae173f11.jpg" alt="ilustrasi nasi tumpeng" class="card-img">
+         <div class="meta"><span class="tag">Makanan </span><span class="muted">22 Sep 2025 • 11 min read</span></div>
+         <h3 id="a1title">Pelajari sejarah, cara membuat, manfaat, dan peluang usaha pie susu—oleh-oleh Bali yang lezat 
+          untuk semua kalangan</h3>
+         <p>Pie susu adalah sejenis kue tart kecil yang terdiri dari kulit pie renyah berisi custard lembut berbahan 
+          dasar susu dan telur. Camilan inimemiliki 
+          rasa manis dan tekstur yang creamy di bagian tengah, dengan pinggirangaring dan tipis</p>
+         <p class="muted">Pelajari cara membuat pie susu dengan mudah disini</p>
+         <a href="artikel4.html" class="cta" style="padding:8px 14px;font-size:14px;border-radius:8px">Baca Selengkapnya →</a>
+        </article>
+
+        <!-- Article 5 -->
+         <article class="card reveal" data-index="0" aria-labelledby="a1title">
+         <img src="https://asset-2.tribunnews.com/tribunnews/foto/bank/images/resep-bolu-pisang-kukus.jpg" alt="ilustrasi nasi tumpeng" class="card-img">
+         <div class="meta"><span class="tag">Makanan </span><span class="muted">22 Sep 2025 • 11 min read</span></div>
+         <h3 id="a1title">Bolu Pisang Ambon: Resep Lembut dan Menggoda Selera</h3>
+         <p>Pisang merupakan salah satu buah tropis yang sangat dekat dengan kehidupan masyarakat Indonesia. Rasanya manis, teksturnya lembut, 
+          dan mudah ditemukan di berbagai pasar tradisional hingga swalayan modern. </p>
+         <p class="muted">Temukan cara membuat bolu pisang ambon yang lembut dan enak. Cocok untuk camilan keluarga dan ide jualan rumahan.</p>
+         <a href="artikel5.html" class="cta" style="padding:8px 14px;font-size:14px;border-radius:8px">Baca Selengkapnya →</a>
+        </article>
+
+        <!-- Article 6 -->
+         <article class="card reveal" data-index="0" aria-labelledby="a1title">
+         <img src="https://asset.kompas.com/crops/iT4vQi_Fcn6H-CbWgNbvWRlyzqc=/0x0:1000x667/1200x800/data/photo/2023/07/27/64c1d1f878622.jpeg" alt="ilustrasi nasi tumpeng" class="card-img">
+         <div class="meta"><span class="tag">Makanan </span><span class="muted">22 Sep 2025 • 11 min read</span></div>
+         <h3 id="a1title">Kentang Crispy: Resep & Tips Praktis Untuk Semua</h3>
+         <p>Kentang goreng, atau dalam bahasa Inggris disebut French fries, adalah salah satu makanan paling populer di dunia. Namun, di balik kesederhanaannya,
+           camilan ini memiliki sejarah panjang yang menarik dan penuh perdebatan</p>
+         <p class="muted">Baca Selengkapnya untuk mengetahui sejarah Kentang crispy dan cara membuatnya agar lebih lezat.</p>
+         <a href="artikel6.html" class="cta" style="padding:8px 14px;font-size:14px;border-radius:8px">Baca Selengkapnya →</a>
+        </article>
+      </div>
+      <p id="noResultsMessage" style="display:none; text-align:center; padding: 20px 0; color: #777;">
+  Maaf, tidak ada artikel yang ditemukan untuk kata kunci ini.
+</p>
+       </div>
+</section>
+      
+    <div class="spacer"></div>
+
+    <section id="about" class="about reveal" data-index="4" aria-labelledby="about-title" style="margin-bottom:20px">
+      <h3 id="about-title" style="color:var(--blue-1)">About</h3>
+      <p class="muted">Website ini dibuat oleh Ezzar putra pramudya, dan saya membuat nya karna ini adalah tugas pkl, saya kerjakan dan selesaikan website ini dalam 
+        waktu seminggu aja. Jika kalian ingin mengapresiasi karya saya, kalian bisa donet saya di <a href="https://tako.id/Bellamuerte18">SINI</a> hehe makasi yang udah donet 
+        kalo ga juga gapapa 👍.
+      </p>
+    </section>
+
+    <section id="contact" class="contact reveal" data-index="5" aria-labelledby="contact-title">
+      <h3 id="contact-title" style="color:var(--blue-1)">Contact</h3>
+      <p class="muted"> contact saya <strong>ezzarputra355@gmail.com</strong> jika anda ingin membuat website yang bagus seperti ini, kalo 
+      sama saya mah harga nya murah pokonya</p>
+      </section>
+  </main>
+
+  <footer role="contentinfo">
+    &copy; <span id="year"></span> Artikel Modern — dibuat dengan sepenuh ❤️
+  </footer>
+
+  <script>
+    const progress = document.querySelector('.progress');
+    const navbar = document.getElementById('navbar');
+    const navLinks = document.getElementById('navLinks');
+    const navToggle = document.getElementById('navToggle');
+    const navAnchors = document.querySelectorAll('.nav-links a');
+    const mainContent = document.getElementById('mainContent');
+    const heroInner = document.getElementById('heroInner');
+    const revealEls = document.querySelectorAll('.reveal');
+    const sections = Array.from(document.querySelectorAll('main section, header, footer'));
+    const articleSearchForm = document.getElementById("articleSearchForm"); // <--- BARU
+const articlesSection = document.getElementById("articles"); // <--- BARU (untuk scroll)
+const loadingOverlay = document.getElementById("loadingOverlay"); // <--- BARU
+const searchResultsInfo = document.getElementById("searchResultsInfo");
+const aboutSection = document.getElementById("about"); 
+const contactSection = document.getElementById("contact");
+
+    
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ---------- Garis tiga buat hp ----------
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!expanded));
+      navLinks.classList.toggle('open');
+    });
+
+    navAnchors.forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = a.getAttribute('href').slice(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          target.scrollIntoView({behavior:'smooth', block:'start'});
+        } else {
+          window.scrollTo({top:0, behavior:'smooth'});
+        }
+        if (navLinks.classList.contains('open')) {
+          navLinks.classList.remove('open');
+          navToggle.setAttribute('aria-expanded','false');
+        }
+      });
+    });
+
+    function updateProgress(){
+      const doc = document.documentElement;
+      const total = doc.scrollHeight - window.innerHeight;
+      const scroll = doc.scrollTop || document.body.scrollTop;
+      const pct = total > 0 ? (scroll / total) * 100 : 0;
+      progress.style.width = pct + '%';
+    }
+    window.addEventListener('scroll', updateProgress, {passive:true});
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
+
+    function onScrollNav(){
+      if (window.scrollY > 20) navbar.classList.add('scrolled'); else navbar.classList.remove('scrolled');
+
+      const offset = window.innerHeight * 0.35;
+      const pos = window.scrollY + offset;
+      let currentId = 'home';
+      for (const s of document.querySelectorAll('header, main section')) {
+        if (!s.id) continue;
+        const top = s.getBoundingClientRect().top + window.scrollY;
+        if (pos >= top) currentId = s.id;
+      }
+      navAnchors.forEach(a => {
+        if (a.getAttribute('href') === '#' + currentId) a.classList.add('active'); else a.classList.remove('active');
+      });
+    }
+    window.addEventListener('scroll', onScrollNav, {passive:true});
+    onScrollNav();
+
+    let latestScroll = 0;
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      latestScroll = window.scrollY;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const y = latestScroll * 0.12;
+          heroInner.style.transform = `translateY(${y}px)`;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, {passive:true});
+
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            
+            const idx = Number(el.dataset.index ?? Array.from(revealEls).indexOf(el));
+            el.style.transitionDelay = (idx * 90) + 'ms';
+            el.classList.add('visible');
+            
+            obs.unobserve(el);
+          }
+        });
+      }, {threshold: 0.14, rootMargin: '0px 0px -8% 0px'});
+
+      revealEls.forEach(el => io.observe(el));
+    } else {
+      revealEls.forEach((el,i) => {
+        el.style.transitionDelay = (i * 80) + 'ms';
+        el.classList.add('visible');
+      });
+    }
+
+    window.addEventListener('load', () => {
+      setTimeout(()=> mainContent.classList.add('in'), 120);
+    });
+
+    navAnchors.forEach(a => {
+      a.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          a.click();
+        }
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!navLinks.contains(e.target) && !navToggle.contains(e.target) && navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded','false');
+      }
+    });
+
+    setTimeout(onScrollNav, 200);
+
+    // slide gambar
+    let index = 0;
+const slides = document.querySelector(".slides");
+const images = document.querySelectorAll(".slides img");
+const total = images.length;
+
+function showSlide(i) {
+  if (i >= total) index = 0;
+  else if (i < 0) index = total - 1;
+  else index = i;
+  slides.style.transform = `translateX(${-index * 100}%)`;
+}
+
+document.querySelector(".prev").addEventListener("click", () => {
+  showSlide(index - 1);
+});
+
+document.querySelector(".next").addEventListener("click", () => {
+  showSlide(index + 1);
+});
+
+setInterval(() => {
+  showSlide(index + 1);
+}, 2000);
+
+// fitur search
+const searchInput = document.getElementById("searchInput");
+const articles = document.querySelectorAll("#articleGrid article");
+const noResultsMessage = document.getElementById("noResultsMessage");
+
+// --- FUNGSI SAAT USER KLIK LUP / ENTER (SUBMIT) ---
+articleSearchForm.addEventListener("submit", function(e) { // <--- DIGANTI
+    e.preventDefault(); 
+    
+    const query = searchInput.value.trim();
+
+    if (query === "") {
+        // Jika kosong, hanya tampilkan animasi shake
+        articleSearchForm.classList.add("shake"); // <--- DIGANTI
+        setTimeout(() => articleSearchForm.classList.remove("shake"), 500); // <--- DIGANTI
+        
+        // Sembunyikan info hasil
+        searchResultsInfo.classList.remove('visible'); 
+        return; 
+    }
+    
+    // 1. SCROLL KE BAGIAN ARTIKEL DENGAN EFEK SMOOTH
+    articlesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // 2. TAMPILKAN ANIMASI LOADING
+    loadingOverlay.classList.add('active');
+    
+    // ... sisa kode lainnya di sini ...
+    
+    setTimeout(() => {
+        
+    }, 800);
+});
+
+// GANTI KEDUA FUNGSI filterArticles LAMA DENGAN BLOK INI
+
+function filterArticles(query) {
+    const articles = document.querySelectorAll("#articleGrid article"); 
+    const lowerCaseQuery = query.toLowerCase();
+    
+    // Inisialisasi penghitung hasil
+    let resultsCount = 0; 
+
+    // 2. Logika KUNCI: Jika query kosong, tampilkan semua
+    if (lowerCaseQuery === '') {
+        articles.forEach(article => {
+            article.style.display = "block";
+            resultsCount++; 
+        });
+        searchResultsInfo.classList.remove('visible');
+        noResultsMessage.style.display = "none"; 
+        return; 
+    }
+    
+    // 3. Logika filter normal jika ada query
+    articles.forEach(article => {
+        const title = article.querySelector("h3").textContent.toLowerCase();
+        const fullText = article.textContent.toLowerCase(); 
+
+        if (title.includes(lowerCaseQuery) || fullText.includes(lowerCaseQuery)) {
+            article.style.display = "block";
+            resultsCount++; // Tambahkan ke hitungan jika ditemukan
+        } else {
+            article.style.display = "none";
+        }
+    });
+    
+    // LOGIKA AKHIR: Tampilkan pesan "Tidak Ada Hasil"
+    if (resultsCount === 0) {
+        noResultsMessage.style.display = "block";
+    } else {
+        noResultsMessage.style.display = "none";
+    }
+}
+    
+searchInput.addEventListener("keyup", function() {
+    filterArticles(this.value);
+});
+
+// Deklarasikan variabel global DEBOUNCING
+let searchTimeout; 
+
+// --- FUNGSI SAAT USER KLIK LUP / ENTER (SUBMIT) ---
+// Logika loading DIHAPUS dari sini, hanya menjalankan filter segera.
+// --- FUNGSI SAAT USER KLIK LUP / ENTER (SUBMIT) ---
+articleSearchForm.addEventListener("submit", function(e) {
+    e.preventDefault(); 
+    
+    // 🏆 KUNCI PERBAIKAN: Bersihkan timer yang sedang berjalan dari event keyup/submit sebelumnya.
+    clearTimeout(searchTimeout); 
+    
+    const query = searchInput.value.trim();
+
+    if (query === "") {
+        // ... (Logika shake jika kosong) ...
+        return; 
+    }
+    
+    // 1. SCROLL KE BAGIAN ARTIKEL DENGAN EFEK SMOOTH
+    articlesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // 2. TAMPILKAN ANIMASI LOADING
+    loadingOverlay.classList.add('active');
+    
+    // 3. Set timer baru (50ms)
+    searchTimeout = setTimeout(() => {
+        // HILANGKAN LOADING
+        loadingOverlay.classList.remove('active'); 
+
+        // Tampilkan hasil filter
+        filterArticles(query); 
+        
+        // Tampilkan kata kunci yang dicari
+        const keywordDisplay = searchResultsInfo.querySelector('strong');
+        keywordDisplay.textContent = query;
+        searchResultsInfo.classList.add('visible');
+
+    }, 200); // Jeda singkat
+});
+
+// --- EVENT LISTENER SAAT USER MENGETIK (KEYUP) ---
+searchInput.addEventListener("keyup", function() {
+    const query = this.value.trim();
+    
+    // 1. Bersihkan timer yang ada (Reset hitungan mundur)
+    clearTimeout(searchTimeout);
+
+    // Jika query kurang dari 3 huruf atau kosong, hanya jalankan filter tanpa loading
+    if (query.length < 3) {
+        filterArticles(query); // Tampilkan/sembunyikan semua artikel (logika query kosong)
+        loadingOverlay.classList.remove('active'); // Pastikan loading hilang jika user menghapus teks
+        return;
+    }
+
+    // 2. TAMPILKAN ANIMASI LOADING
+    loadingOverlay.classList.add('active');
+    
+    // 3. Set timer baru (Simulasi loading 500ms setelah pengetikan berhenti)
+    searchTimeout = setTimeout(() => {
+        // HILANGKAN LOADING
+        loadingOverlay.classList.remove('active'); 
+
+        // Tampilkan hasil filter (setelah jeda)
+        filterArticles(query);
+        
+        // Tampilkan info hasil pencarian
+        const keywordDisplay = searchResultsInfo.querySelector('strong');
+        keywordDisplay.textContent = query;
+        searchResultsInfo.classList.add('visible');
+        
+    }, 500); // Jeda debouncing 500ms
+});
+
+// --- EVENT LISTENER SAAT USER MENGKLIK SEARCH BAR (FOCUS) ---
+searchInput.addEventListener("focus", function() {
+    // Panggil fungsi untuk menyembunyikan semua artikel
+    hideAllArticles();
+});
+
+// --- EVENT LISTENER SAAT USER KELUAR DARI SEARCH BAR (BLUR) ---
+searchInput.addEventListener("blur", function() {
+    const query = this.value.trim();
+
+    // Jika query kosong saat fokus hilang, tampilkan semua artikel
+    if (query === '') {
+        filterArticles('');
+    }
+});
+
+// --- FUNGSI UTAMA LAINNYA ---
+
+// FUNGSI UNTUK MENYEMBUNYIKAN SEMUA ARTIKEL
+// --- FUNGSI UNTUK MENYEMBUNYIKAN SEMUA ARTIKEL, ABOUT, DAN CONTACT ---
+function hideAllArticles() {
+    const articles = document.querySelectorAll("#articleGrid article");
+    
+    // 1. Sembunyikan semua artikel
+    articles.forEach(article => {
+        article.style.display = "none";
+    });
+    
+    // 2. [✔ BARU] Sembunyikan bagian About dan Contact
+    if (aboutSection) {
+        aboutSection.style.display = "none";
+    }
+    if (contactSection) {
+        contactSection.style.display = "none";
+    }
+    
+    // 3. Sembunyikan info hasil pencarian
+    searchResultsInfo.classList.remove('visible'); 
+}
+
+// FUNGSI FILTER ARTIKEL (Pastikan ini yang Anda gunakan)
+// GANTI KEDUA FUNGSI filterArticles LAMA DENGAN BLOK INI
+
+function filterArticles(query) {
+    const articles = document.querySelectorAll("#articleGrid article"); 
+    const lowerCaseQuery = query.toLowerCase();
+    
+    // Inisialisasi penghitung hasil
+    let resultsCount = 0; 
+
+    // 2. Logika KUNCI: Jika query kosong, tampilkan semua
+    if (lowerCaseQuery === '') {
+        articles.forEach(article => {
+            article.style.display = "block";
+            resultsCount++; 
+        });
+        if (aboutSection) {
+        aboutSection.style.display = "block";
+    }
+    if (contactSection) {
+        contactSection.style.display = "block";
+    }
+        searchResultsInfo.classList.remove('visible');
+        noResultsMessage.style.display = "none"; 
+        return; 
+    }
+    
+    // 3. Logika filter normal jika ada query
+    articles.forEach(article => {
+        const title = article.querySelector("h3").textContent.toLowerCase();
+        const fullText = article.textContent.toLowerCase(); 
+
+        if (title.includes(lowerCaseQuery) || fullText.includes(lowerCaseQuery)) {
+            article.style.display = "block";
+            resultsCount++; // Tambahkan ke hitungan jika ditemukan
+        } else {
+            article.style.display = "none";
+        }
+    });
+    
+    // LOGIKA AKHIR: Tampilkan pesan "Tidak Ada Hasil"
+    if (resultsCount === 0) {
+        noResultsMessage.style.display = "block";
+    } else {
+        noResultsMessage.style.display = "none";
+    }
+}
+
+// Tampilkan semua artikel saat halaman dimuat
+window.addEventListener('load', () => {
+    filterArticles('');
+});
+  </script>
+</body>
+</html>
