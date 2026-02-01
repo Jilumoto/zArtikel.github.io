@@ -656,6 +656,43 @@
   }
 }
 
+/* ===== CATEGORY BAR (DETIK STYLE) ===== */
+.category-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 6px;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+}
+
+.category-bar::-webkit-scrollbar {
+  display: none; /* Chrome */
+}
+
+.category {
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: #e8f1ff;
+  color: var(--blue-1);
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+
+.category:hover {
+  background: var(--blue-2);
+  color: white;
+}
+
+.category.active {
+  background: linear-gradient(90deg, var(--blue-1), var(--blue-2));
+  color: white;
+  box-shadow: 0 6px 16px rgba(0,102,204,0.25);
+}
+
 
   </style>
 </head>
@@ -664,20 +701,17 @@
 
   <nav id="navbar" role="navigation" aria-label="Main navigation">
     <div class="brand" aria-hidden="false">
-
-   
+      
       <div class="logo">
         <img src="zartikel.png" alt="logo">
       </div>
       <div class="logo-text">
-
-    
         
         <p style="margin-top:2px;color:var(--muted);font-weight:600;font-size:12px"></p>
       </div>
     </div>
 
-         <div class="search-box">
+      <div class="search-box">
     <form id="articleSearchForm" role="search" aria-label="Formulir Pencarian Artikel">
       <input type="search" id="searchInput" placeholder="Cari artikel..." name="q" aria-label="Masukkan kata kunci pencarian">
       <button type="submit" id="searchButton" aria-label="Tombol Cari">
@@ -691,7 +725,7 @@
       <span class="bar"></span>
       <span class="bar"></span>
     </button>
-    
+
     <div class="nav-links" id="navLinks">
       <ul>
         <li><a href="#home" data-target="home" class="active">Home</a></li>
@@ -701,19 +735,17 @@
     </div>
   </nav>
 
-  
-
   <!-- HERO -->
   
     <header class="hero" id="home">
   <div class="slider">
     <div class="slides">
-      <img src="nasitumpeng.png" alt="Slide 1">
-      <img src="https://asset-2.tribunnews.com/tribunnews/foto/bank/images/resep-bolu-pisang-kukus.jpg" alt="Slide 2">
-      <img src="pizza.jpg" alt="Slide 3">
-      <img src="hias.jpg" alt="Slide 4">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfIpFePMU1FVSWDq4JRgPXt5UMrF3bBeF8GQ&s.png" alt="Slide 1">
+      <img src="12rpl2.jpg" alt="Slide 2">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSano3Xm04ABEP-nYMCk_FGpapnFd_BJ-5I4g&s.jpg" alt="Slide 3">
+      <img src="https://media.zcreators.id/crop/0x0:0x0/x/photo/p2/98/2024/06/02/Screenshot_2024_0602_051146-1644482184.png" alt="Slide 4">
       <img src="https://image.idntimes.com/post/20210228/fromandroid-41a7bfad27fd6b94159fe7e9ae173f11.jpg" alt="Slide 5">
-      <img src="hias.jpg" alt="Slide 6">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSano3Xm04ABEP-nYMCk_FGpapnFd_BJ-5I4g&s.jpg" alt="Slide 6">
       <img src="https://asset.kompas.com/crops/iT4vQi_Fcn6H-CbWgNbvWRlyzqc=/0x0:1000x667/1200x800/data/photo/2023/07/27/64c1d1f878622.jpeg  " alt="Slide 7">
     </div>
     <!-- overlay hitam transparan -->
@@ -736,8 +768,16 @@
   <main id="mainContent" class="main-entrance" role="main">
     <section id="articles" aria-labelledby="articles-title" style="margin-top:6px">
   <h2 id="articles-title" style="margin:0 0 16px;color:var(--blue-1)">Artikel Terbaru</h2>
+  <div class="category-bar">
+  <a href="#" class="category active">Semua</a>
+  <a href="#articles" class="category">Makanan</a>
+  <a href="#olahraga" class="category">Olahraga</a>
+  <a href="#esport" class="category">E-Sport</a>
+  <a href="#tips" class="category">Tips</a>
+  <a href="#lainnya" class="category">Lainnya</a>
+</div>
 
-  
+
 
   <p id="searchResultsInfo" class="search-results-info" aria-live="polite">
     Menampilkan hasil untuk: <strong></strong>
@@ -746,18 +786,70 @@
     <div id="loadingOverlay" class="loading-overlay">
       <div class="spinner"></div>
     </div>
-  <div class="grid" id="articleGrid">     
+  <div class="grid" id="articleGrid">  
+    
+    
+      <!-- Article 1 -->
+         <article class="card reveal" data-index="0" aria-labelledby="a1title" id="olahraga">
+         <img src="https://media.zcreators.id/crop/0x0:0x0/x/photo/p2/98/2024/06/02/Screenshot_2024_0602_051146-1644482184.png" alt="real madrid 15 ucl" class="card-img">
+         <div class="meta"><span class="tag">Olahraga </span><span class="muted">15 Sep 2024 • 15 min read</span></div>
+         <h3 id="a1title">Real madrid berhasil memenangkan UCL ke 15 </h3>
+         <p>Real Madrid sukses menjadi juara Liga Champions Eropa untuk ke-15 kali sepanjang sejarah klub. Kesuksesan itu diperoleh usai Madrid menaklukkan Borussio Dortmund dengan skor 2-0 dalam final yang berlangsung di Stadion Wembley, London, Inggris, Minggu (2/6/2024) dini hari WIB.
+         <p class="muted"></p>
+         <a href="artikelmadrid.html" class="cta" style="padding:8px 14px;font-size:14px;border-radius:8px">Baca Selengkapnya →</a>
+        </article>
       
-        <!-- Article 1 -->
-<article class="card reveal" data-index="0" aria-labelledby="a1title">
-  <img src="nasitumpeng.png" alt="ilustrasi nasi tumpeng" class="card-img">
-  <div class="meta"><span class="tag">Makanan</span><span class="muted">12 Sep 2025 • 5 min read</span></div>
-  <h3 id="a1title">Panduan Lengkap Membuat Nasi Tumpeng yang Mudah & Bernilai</h3>
-  <p>Nasi tumpeng adalah hidangan tradisional Indonesia, simbol syukur, persatuan, dan budaya kekayaan kuliner Nusantara.
-     Meski tampak rumit, membuatnya bisa mudah jika mengikuti panduan yang sistematis</p>
-  <p class="muted">Pelajari bagaimana cara membuat nasi tumpeng yang mudah dan praktis.</p>
-  <a href="artikel1.html" class="cta" style="padding:8px 14px;font-size:14px;border-radius:8px">Baca Selengkapnya →</a>
-</article>
+        <!-- Article 2 -->
+         <article class="card reveal" data-index="0" aria-labelledby="a1title" id="olahraga">
+         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuReWS-ehfHOrp0pshJHqOXeIAsw-Ya69wPA&s.jpg alt="real madrid 15 ucl" class="card-img">
+         <div class="meta"><span class="tag">Olahraga </span><span class="muted">30 Des 2025 • 7 min read</span></div>
+         <h3 id="a1title">Barcelona akan kesusahan untuk memenangkan ucl tahun ini</h3>
+         <p>Blaugrana kurang meyakinkan di awal Liga Champions musim ini. Dari lima pertandingan fase liga yang sudah dimainkan, Barcelona cuma dua kali menang dan dua kali kalah melawan rival-rival macam juara bertahan PSG 1-2 dan Chelsea 0-3.
+         <p class="muted"></p>
+         <a href="barcal.html" class="cta" style="padding:8px 14px;font-size:14px;border-radius:8px">Baca Selengkapnya →</a>
+        </article>
+
+        <!-- Article 3 -->
+         <article class="card reveal" data-index="0" aria-labelledby="a1title" id="olahraga">
+         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSano3Xm04ABEP-nYMCk_FGpapnFd_BJ-5I4g&s.jpg" alt="real madrid 15 ucl" class="card-img">
+         <div class="meta"><span class="tag">Olahraga </span><span class="muted">25 Jan 2026 • 5 min read</span></div>
+         <h3 id="a1title">Tampil disiplin, MU hajar Arsenal 3-2 di kandangnya</h3>
+         <p>Drama lima gol mewarnai duel panas Arsenal kontra Manchester United (MU) dalam lanjutan matchday ke-23 Liga Inggris 2025/26 di Emirates Stadium pada Minggu (25/1) malam WIB.
+         <p class="muted"></p>
+         <a href="mugg.html" class="cta" style="padding:8px 14px;font-size:14px;border-radius:8px">Baca Selengkapnya →</a>
+        </article>
+
+        <!-- Article 4 -->
+         <article class="card reveal" data-index="0" aria-labelledby="a1title" id="olahraga">
+         <img src="12rpl2.jpg" alt="122 rpl 2" class="card-img">
+         <div class="meta"><span class="tag">Olahraga </span><span class="muted">18 Jan 2026 • 5 min read</span></div>
+         <h3 id="a1title">12 rpl 2 berhasil memenangkan classmeet wb</h3>
+         <p>Dengan dramatis 12 rpl 2 berhasil memenangkan classmeet futsal melawan 12 tkj 1, skor akhir 3-2 untuk kemenangan 12 rpl 2. Gol di cetak hattrick oleh julian bernomor pungung 10.
+         <p class="muted"></p>
+         <a href="https://www.instagram.com/12.rpltwoo?igsh=MW1vdDlvcXpldHZs" class="cta" style="padding:8px 14px;font-size:14px;border-radius:8px">Foto Selengkapnya →</a>
+        </article>
+
+        <!-- Article 5 -->
+         <article class="card reveal" data-index="0" aria-labelledby="a1title" id="esport">
+         <img src="https://supernews.co.id/wp-content/uploads/2026/01/Hasil-AE-vs-TLPH-Alter-Ego-Pulangkan-Liquid-PH.jpg" alt="alter ego" class="card-img">
+         <div class="meta"><span class="tag">E-sport </span><span class="muted">25 Jan 2026 • 5 min read</span></div>
+         <h3 id="a1title">Alter ego berhasil memulangkan 2 tim raksasa dan lolos grand final</h3>
+         <p>Kalau bicara prestasi, tentunya yang paling berkesan adalah pertandingan Sabtu (24/1/2026) kemarin. Pasalnya, dalam semalam AE berhasil memulangkan dua tim raksasa yang digadang bakal menjadi finalis di M7. Tim yang dimaksud adalah SRG dan TLPH yang sudah dikenal sebagai tim dengan segudang prestasi.
+         <p class="muted"></p>
+         <a href="https://www.idntimes.com/tech/games/bukti-kehebatan-ae-di-m7-world-championship-c1c2-01-gjjrz-pll2lw" class="cta" style="padding:8px 14px;font-size:14px;border-radius:8px">Baca Selengkapnya →</a>
+        </article>
+
+        <!-- Article 5 -->
+         <article class="card reveal" data-index="0" aria-labelledby="a1title" id="esport">
+         <img src="https://www.inilah.com/_next/image?url=https%3A%2F%2Fc.inilah.com%2Freborn%2F2025%2F12%2Fmedium_1233222_c1b350012a.jpg&w=3840&q=75.jpg alt="atlet Thailand class="card-img">
+         <div class="meta"><span class="tag">E-sport </span><span class="muted">25 Nov 2025 • 5 min read</span></div>
+         <h3 id="a1title">Atlet e-sport thailand ketahuan curang di sea games</h3>
+         <p>Seorang atlet e-sports Arena of Valor (AOV) wanita asal Thailand bernama Naphat Warasin atau yang dikenal Tokyogurl, dikeluarkan dari SEA Games 2025. Dia kedapatan menggunakan perangkat lunak pihak ketiga yang tidak sah selama pertandingan berlangsung.
+         <p class="muted"></p>
+         <a href="https://20.detik.com/detikupdate/20251217-251217026/video-bisa-bisanya-atlet-e-sports-thailand-pake-cheat-di-sea-games-2025" class="cta" style="padding:8px 14px;font-size:14px;border-radius:8px">Baca Selengkapnya →</a>
+        </article>
+
+
 
         <!-- Article 2 -->
         <article class="card reveal" data-index="0" aria-labelledby="a1title">
@@ -771,7 +863,7 @@
         </article>
 
         <!-- Article 3 -->
-        <article class="card reveal" data-index="0" aria-labelledby="a1title">
+        <article class="card reveal" data-index="0" aria-labelledby="a1title" id="lainnya">
          <img src="hias.jpg" alt="ilustrasi nasi tumpeng" class="card-img">
          <div class="meta"><span class="tag">Lomba</span><span class="muted">29 Sep 2025 • 9 min read</span></div>
          <h3 id="a1title">Lomba Hias Kaleng Kerupuk 17 Agustus: Kreatif & Meriah</h3>
@@ -816,7 +908,22 @@
          <p class="muted">Baca Selengkapnya untuk mengetahui sejarah Kentang crispy dan cara membuatnya agar lebih lezat.</p>
          <a href="artikel6.html" class="cta" style="padding:8px 14px;font-size:14px;border-radius:8px">Baca Selengkapnya →</a>
         </article>
+
+           <!-- Article 7 -->
+<article class="card reveal" data-index="0" aria-labelledby="a1title">
+  <img src="nasitumpeng.png" alt="ilustrasi nasi tumpeng" class="card-img">
+  <div class="meta"><span class="tag">Makanan</span><span class="muted">12 Sep 2025 • 5 min read</span></div>
+  <h3 id="a1title">Panduan Lengkap Membuat Nasi Tumpeng yang Mudah & Bernilai</h3>
+  <p>Nasi tumpeng adalah hidangan tradisional Indonesia, simbol syukur, persatuan, dan budaya kekayaan kuliner Nusantara.
+     Meski tampak rumit, membuatnya bisa mudah jika mengikuti panduan yang sistematis</p>
+  <p class="muted">Pelajari bagaimana cara membuat nasi tumpeng yang mudah dan praktis.</p>
+  <a href="artikel1.html" class="cta" style="padding:8px 14px;font-size:14px;border-radius:8px">Baca Selengkapnya →</a>
+</article>
+
+
       </div>
+
+
       <p id="noResultsMessage" style="display:none; text-align:center; padding: 20px 0; color: #777;">
   Maaf, tidak ada artikel yang ditemukan untuk kata kunci ini.
 </p>
@@ -1273,10 +1380,6 @@ window.addEventListener('load', () => {
   </script>
 </body>
 </html>
-
-
-
-
 
 
 
