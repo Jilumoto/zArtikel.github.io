@@ -55,12 +55,19 @@
       align-items:center;
       justify-content:space-between;
       gap:16px;
-      padding:12px 22px;
+      padding:6px 18px;
+      min-height: 56px;
       background: rgba(255,255,255,0.6);
       backdrop-filter: blur(8px) saturate(120%);
       border-bottom: 1px solid rgba(10, 25, 41, 0.04);
       transition: background 300ms ease, transform 300ms ease, box-shadow 300ms ease;
     }
+
+    @media (max-width: 768px) {
+  .logo img {
+    height: 34px;
+  }
+}
 
     nav.scrolled {
       background: linear-gradient(90deg,var(--blue-1),var(--blue-2));
@@ -86,7 +93,7 @@
 }
 
 .logo img {
-  height: 100px;
+  height: 80px;
   
   width: auto;
 }
@@ -158,10 +165,10 @@
     .hero {
       position: relative;
       width: 100%;
-      height: 80vh;
-      height: 75vh;
+      height: 85vh;
       margin-top: 0;
       overflow: hidden;
+      min-height: 300px;
     }
 
     .hero-img {
@@ -277,12 +284,13 @@
   overflow: hidden;
   box-shadow: 0 6px 12px rgba(0,0,0,0.2);
   z-index: 1;
+  height: 100%;
 }
 
 .slides {
   display: flex;
   transition: transform 0.6s ease-in-out;
-  height: 100vh;
+  height: 100%;
 }
 
 .slides img {
@@ -300,7 +308,12 @@
   }
 }
 
-
+@media (max-width: 768px) {
+  .hero {
+    height: 45vh;
+    min-height: 300px;
+  }
+}
 
     /* MAIN content container */
     main {
@@ -740,12 +753,12 @@
     <header class="hero" id="home">
   <div class="slider">
     <div class="slides">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfIpFePMU1FVSWDq4JRgPXt5UMrF3bBeF8GQ&s.png" alt="Slide 1">
+      <img src="barca.jpeg" alt="Slide 1">
       <img src="12rpl2.jpg" alt="Slide 2">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSano3Xm04ABEP-nYMCk_FGpapnFd_BJ-5I4g&s.jpg" alt="Slide 3">
-      <img src="https://media.zcreators.id/crop/0x0:0x0/x/photo/p2/98/2024/06/02/Screenshot_2024_0602_051146-1644482184.png" alt="Slide 4">
+      <img src="https://i2-prod.manchestereveningnews.co.uk/article33299305.ece/ALTERNATES/s1200f/0_GettyImages-2257651844.jpg" alt="Slide 3">
+      <img src="https://static.gatra.com/foldershared/images/2024/msl/05-May/ZZZZPORLA.jpg" alt="Slide 4">
       <img src="https://image.idntimes.com/post/20210228/fromandroid-41a7bfad27fd6b94159fe7e9ae173f11.jpg" alt="Slide 5">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSano3Xm04ABEP-nYMCk_FGpapnFd_BJ-5I4g&s.jpg" alt="Slide 6">
+      <img src="https://supernews.co.id/wp-content/uploads/2026/01/Hasil-AE-vs-TLPH-Alter-Ego-Pulangkan-Liquid-PH.jpg" alt="Slide 6">
       <img src="https://asset.kompas.com/crops/iT4vQi_Fcn6H-CbWgNbvWRlyzqc=/0x0:1000x667/1200x800/data/photo/2023/07/27/64c1d1f878622.jpeg  " alt="Slide 7">
     </div>
     <!-- overlay hitam transparan -->
@@ -772,8 +785,8 @@
   <a href="#" class="category active">Semua</a>
   <a href="#olahraga" class="category">Olahraga</a>
   <a href="#esport" class="category">E-Sport</a>
-  <a href="#makanan" class="category">Makanan</a>
   <a href="#tips" class="category">Tips</a>
+  <a href="#makanan" class="category">Makanan</a>
   <a href="#lainnya" class="category">Lainnya</a>
 </div>
 
@@ -791,7 +804,7 @@
     
       <!-- Article 1 -->
          <article class="card reveal" data-index="0" aria-labelledby="a1title" id="olahraga">
-         <img src="https://media.zcreators.id/crop/0x0:0x0/x/photo/p2/98/2024/06/02/Screenshot_2024_0602_051146-1644482184.png" alt="real madrid 15 ucl" class="card-img">
+         <img src="https://static.gatra.com/foldershared/images/2024/msl/05-May/ZZZZPORLA.jpg" alt="real madrid 15 ucl" class="card-img">
          <div class="meta"><span class="tag">Olahraga </span><span class="muted">15 Sep 2024 • 15 min read</span></div>
          <h3 id="a1title">Real madrid berhasil memenangkan UCL ke 15 </h3>
          <p>Real Madrid sukses menjadi juara Liga Champions Eropa untuk ke-15 kali sepanjang sejarah klub. Kesuksesan itu diperoleh usai Madrid menaklukkan Borussio Dortmund dengan skor 2-0 dalam final yang berlangsung di Stadion Wembley, London, Inggris, Minggu (2/6/2024) dini hari WIB.
@@ -801,7 +814,7 @@
       
         <!-- Article 2 -->
          <article class="card reveal" data-index="0" aria-labelledby="a1title" id="olahraga">
-         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuReWS-ehfHOrp0pshJHqOXeIAsw-Ya69wPA&s.jpg alt="real madrid 15 ucl" class="card-img">
+         <img src="barca.jpeg"real madrid 15 ucl" class="card-img">
          <div class="meta"><span class="tag">Olahraga </span><span class="muted">30 Des 2025 • 7 min read</span></div>
          <h3 id="a1title">Barcelona akan kesusahan untuk memenangkan ucl tahun ini</h3>
          <p>Blaugrana kurang meyakinkan di awal Liga Champions musim ini. Dari lima pertandingan fase liga yang sudah dimainkan, Barcelona cuma dua kali menang dan dua kali kalah melawan rival-rival macam juara bertahan PSG 1-2 dan Chelsea 0-3.
@@ -811,7 +824,7 @@
 
         <!-- Article 3 -->
          <article class="card reveal" data-index="0" aria-labelledby="a1title" id="olahraga">
-         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSano3Xm04ABEP-nYMCk_FGpapnFd_BJ-5I4g&s.jpg" alt="real madrid 15 ucl" class="card-img">
+         <img src="https://i2-prod.manchestereveningnews.co.uk/article33299305.ece/ALTERNATES/s1200f/0_GettyImages-2257651844.jpg" alt="real madrid 15 ucl" class="card-img">
          <div class="meta"><span class="tag">Olahraga </span><span class="muted">25 Jan 2026 • 5 min read</span></div>
          <h3 id="a1title">Tampil disiplin, MU hajar Arsenal 3-2 di kandangnya</h3>
          <p>Drama lima gol mewarnai duel panas Arsenal kontra Manchester United (MU) dalam lanjutan matchday ke-23 Liga Inggris 2025/26 di Emirates Stadium pada Minggu (25/1) malam WIB.
@@ -849,10 +862,28 @@
          <a href="https://20.detik.com/detikupdate/20251217-251217026/video-bisa-bisanya-atlet-e-sports-thailand-pake-cheat-di-sea-games-2025" class="cta" style="padding:8px 14px;font-size:14px;border-radius:8px">Baca Selengkapnya →</a>
         </article>
 
+        <!-- Article 6 -->
+         <article class="card reveal" data-index="0" aria-labelledby="a1title" id="tips">
+         <img src="https://awsimages.detik.net.id/community/media/visual/2024/07/23/ilustrasi-mc_169.jpeg?w=600&q=90"atlet Thailand class="card-img">
+         <div class="meta"><span class="tag">Tips </span><span class="muted">13 sep 2025 • 5 min read</span></div>
+         <h3 id="a1title">Inilah beberapa cara agar kita tidak gugup saat berbicara di hadapan banyak orang </h3>
+         <p>Public speaking (berbicara di depan umum) adalah skill yang membutuhkan  keterampilan dan keberanian. Bagi sebagian orang, public speaking sangat gampang dan dapat dilakukan secara alamiah seperti bernapas; tapi bagi sebagian orang lainnya, dibutuhkan latihan dan dedikasi selama bertahun-tahun untuk mencapai kepercayaan diri dan ketenangan yang dibutuhkan untuk berbicara di depan umum.</p>
+         <br>
+         <a href="https://www.umn.ac.id/7-tips-public-speaking-supaya-enggak-gugup/" class="cta" style="padding:8px 14px;font-size:14px;border-radius:8px">Baca Selengkapnya →</a>
+        </article>
 
+        <!-- Article 7 -->
+         <article class="card reveal" data-index="0" aria-labelledby="a1title">
+         <img src="https://cdn.batemuritour.com/storage/images/upload/2023/dewi/09-Sep/thumbnail%20artikel%202023122%20-%202023-09-01T094640.836.jpg"atlet Thailand class="card-img">
+         <div class="meta"><span class="tag">Tips </span><span class="muted">13 sep 2025 • 5 min read</span></div>
+         <h3 id="a1title">Inilah cara agar kita tidak menya-nyiakan waktu</h3>
+         <p>Betapa ruginya jika kita menghabiskan waktu secara sia-sia, tanpa menyadari betapa berharganya setiap detik, menit, jam, dan hari yang telah terbuang begitu saja. Dengan menghargai waktu berarti kita sedang menghargai kehidupan. Kita seharusnya lebih bijaksana dalam memanfaatkan waktu.</p>
+         <br>
+         <a href="https://foodtechlab.uad.ac.id/jangan-menyia-nyiakan-waktu/" class="cta" style="padding:8px 14px;font-size:14px;border-radius:8px">Baca Selengkapnya →</a>
+        </article>
 
         <!-- Article 2 -->
-        <article class="card reveal" data-index="0" aria-labelledby="a1title" id="makanan">
+        <article class="card reveal" data-index="0" aria-labelledby="a1title">
          <img src="pizza.jpg" alt="ilustrasi nasi tumpeng" class="card-img">
          <div class="meta"><span class="tag">Makanan</span><span class="muted">28 Sep 2025 • 8 min read</span></div>
          <h3 id="a1title">Resep Praktis Pizza Rumahan Lezat & Mudah Dibuat</h3>
@@ -863,7 +894,7 @@
         </article>
 
         <!-- Article 3 -->
-        <article class="card reveal" data-index="0" aria-labelledby="a1title">
+        <article class="card reveal" data-index="0" aria-labelledby="a1title" id="lainnya">
          <img src="hias.jpg" alt="ilustrasi nasi tumpeng" class="card-img">
          <div class="meta"><span class="tag">Lomba</span><span class="muted">29 Sep 2025 • 9 min read</span></div>
          <h3 id="a1title">Lomba Hias Kaleng Kerupuk 17 Agustus: Kreatif & Meriah</h3>
@@ -875,7 +906,7 @@
         </article>
 
         <!-- Article 4 -->
-         <article class="card reveal" data-index="0" aria-labelledby="a1title">
+         <article class="card reveal" data-index="0" aria-labelledby="a1title" id="makanan">
          <img src="https://image.idntimes.com/post/20210228/fromandroid-41a7bfad27fd6b94159fe7e9ae173f11.jpg" alt="ilustrasi nasi tumpeng" class="card-img">
          <div class="meta"><span class="tag">Makanan </span><span class="muted">22 Sep 2025 • 11 min read</span></div>
          <h3 id="a1title">Pelajari sejarah, cara membuat, manfaat, dan peluang usaha pie susu—oleh-oleh Bali yang lezat 
@@ -1377,10 +1408,12 @@ function filterArticles(query) {
 window.addEventListener('load', () => {
     filterArticles('');
 });
+
+  
+
   </script>
 </body>
 </html>
-
 
 
 
